@@ -37,3 +37,23 @@ jobs:
     - run: npm ci
     - run: npm run lint
     - run: npm run build
+
+  monitor:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./monitor
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build Docker Image
+      run: docker build .
+
+  load:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./load
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build Docker Image
+      run: docker build .
