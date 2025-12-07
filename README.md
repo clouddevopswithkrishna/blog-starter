@@ -29,22 +29,7 @@ A production-ready starter project for a simple blog-style web app, now featurin
 
 The project now includes a **Monitor Service** that orchestrates load generation and collects metrics via the **Docker Socket** and direct HTTP health checks.
 
-```mermaid
-graph TD
-    Client[Browser] -->|HTTP:3000| FE[Frontend Container / Nginx]
-    Client -->|HTTP:4000| BE[Backend Container / Node.js]
-    Client -->|HTTP:8001| Mon[Monitor Dashboard / Flask]
-    
-    FE -->|HTTP| BE
-    BE -->|TCP| DB[(PostgreSQL)]
-    
-    subgraph Monitoring System
-        Mon -- Read Stats/Logs --> Docker[Docker Socket]
-        Mon -- Health/Latency Check --> FE
-        Mon -- Stats/Stress Trigger --> BE
-        Mon -- Latency Ping --> DB_Ping[DB Latency Check via BE]
-    end
-```
+![System Architecture](./assets/architecture.png)
 
 ## Tech Stack
 

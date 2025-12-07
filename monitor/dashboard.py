@@ -31,7 +31,7 @@ load_threads = {
 def user_worker(target_type, worker_id):
     # Mapping targets to URLs
     urls = {
-        "frontend": "http://frontend:80", 
+        "frontend": "http://frontend:3000", 
         "backend": f"{BACKEND_URL}/posts",
         "db": f"{BACKEND_URL}/database-intensive"
     }
@@ -104,7 +104,7 @@ HTML_TEMPLATE = """
 </head>
 <body class="dark-mode">
     <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h1>🚀 Antigravity Blog Monitor</h1>
+        <h1>🚀 BlogPulse Monitor</h1>
         <button class="btn btn-blue" onclick="document.body.classList.toggle('dark-mode')">Toggle Theme</button>
     </div>
 
@@ -381,7 +381,7 @@ def get_data():
     # 1. Frontend Latency
     try:
         s = time.time()
-        requests.get("http://frontend:80", timeout=0.5)
+        requests.get("http://frontend:3000", timeout=0.5)
         latencies["frontend"] = int((time.time() - s) * 1000)
     except: pass
     
